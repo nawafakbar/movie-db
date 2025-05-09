@@ -12,7 +12,8 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
+        $movies=movies::orderBy('id', 'asc')->paginate(6);
+        return view('template', ['movies'=>$movies]);
     }
 
     /**
