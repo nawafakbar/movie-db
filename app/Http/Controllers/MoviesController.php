@@ -16,6 +16,12 @@ class MoviesController extends Controller
         return view('template', ['movies'=>$movies]);
     }
 
+    public function detailMovie($id, $slug)
+    {
+        $movie = movies::find($id);
+        return view('detail_movie', compact('movie'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

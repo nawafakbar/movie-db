@@ -9,3 +9,4 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', [MoviesController::class, 'index']);
 
 Route::resource('/', MoviesController::class);
+Route::get('/movie/{id}/{slug}', [MoviesController::class, 'detailMovie']);

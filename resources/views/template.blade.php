@@ -20,7 +20,7 @@
           <p class="card-text fs-6">{{ Str::limit($movie->synopsis, 50) }}</p>
         </div>
         <p class="card-text">
-          <a class="btn btn-primary" href="/home">View more</a>
+          <a class="btn btn-primary" href="/movie/{{ $movie->id }}/{{ $movie->slug }}">View more</a>
         </p>
       </div>
     </div>
