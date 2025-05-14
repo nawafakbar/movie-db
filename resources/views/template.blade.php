@@ -29,9 +29,9 @@
       </div>
     @endforeach
   </div>
-  <div class="d-flex justify-content-center mt-4">
+  <div class="mt-4 px-5">
   {{ $movies->links() }}
-</div>
+  </div>
 
   </div>
 </div>
