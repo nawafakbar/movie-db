@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title','List Movie')
-@section('navCard', 'active')
+@section('navHome', 'active')
 
 @section('content')
 <div class="container my-5">
@@ -11,7 +11,7 @@
         <div class="card mb-3" style="max-width: 440px; height: 330px;">
   <div class="row g-0 h-100">
     <div class="col-md-6 h-100">
-      <img src="{{ $movie->cover_image }}" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="{{ $movie->title }}">
+      <img src="{{ asset('storage/' . $movie->cover_image) }}" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="{{ $movie->title }}">
     </div>
     <div class="col-md-6">
       <div class="card-body d-flex flex-column justify-content-between h-100">

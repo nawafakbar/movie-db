@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class categories extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoriesFactory> */
-    use HasFactory;
+    //use HasFactory;
+    public function movie(): HasMany
+    {
+        return $this->hasMany(movies::class);
+    }
 }

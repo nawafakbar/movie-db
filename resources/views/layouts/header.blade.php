@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link @yield('navCard')" aria-current="page" href="#">Home</a>
+          <a class="nav-link @yield('navHome')" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link @yield('navList')" href="#">Watch list</a>
+          <a class="nav-link @yield('navInput')" href="/create">Input Movie</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
