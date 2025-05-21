@@ -17,7 +17,7 @@
                             <p class="card-text"><strong>Sinopsis:</strong> {{ Str::limit($movie->synopsis, 150) }}</p>
                             <p class="card-text"><strong>Actor:</strong> {{ Str::limit($movie->actors, 150) }}</p>
                             <p class="card-text"><strong>Category:</strong> {{ optional($movie->categories)->category_name ?? '-' }}</p>
-                            <a href="/" class="btn btn-primary mt-3">Back</a>
+                            <a href="/movies" class="btn btn-primary mt-3">Back</a>
                         </div>
                     </div>
                 </div>

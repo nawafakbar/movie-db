@@ -25,6 +25,12 @@ class MoviesController extends Controller
         return view('detail_movie', compact('movie'));
     }
 
+    public function listMovie()
+    {
+        $movies=movies::orderBy('id', 'asc')->paginate(6);
+        return view('view', ['movies'=>$movies]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -62,7 +68,7 @@ class MoviesController extends Controller
     movies::create($validated);
 
     // Redirect kembali dengan pesan sukses
-    return redirect('/create')->with('success', 'Movie created successfully.');
+    return redirect('/view')->with('success', 'Movie created successfully.');
     }
 
     /**
@@ -76,24 +82,49 @@ class MoviesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(movies $movies)
+    public function edit(string $id)
     {
-        //
+        $movie = movies::findOrFail($id);
+        $categories = categories::all(); // pastikan ini ada
+        return view('edit', compact('movie', 'categories'));
+        // $movie = movies::with('categories')->findOrFail($id);
+        // return view('edit', compact('movie'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, movies $movies)
+    public function update(Request $request, string $id)
     {
-        //
+        $rules = $request->validate([
+        'title' => 'required|string|max:255',
+        'synopsis' => 'nullable|string',
+        'category_id' => 'required|exists:categories,id',
+        'year' => 'required|integer|min:1900|max:' . date('Y'),
+        'actors' => 'nullable|string',
+        'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Generate slug otomatis
+        $rules['slug'] = Str::slug($rules['title']);
+
+        // Simpan cover image jika ada
+        if ($request->hasFile('cover_image')) {
+            $rules['cover_image'] = $request->file('cover_image')->store('images', 'public');
+        }
+
+        movies::where('id', $id)
+            ->update($rules);
+
+        return redirect('/view');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(movies $movies)
+    public function destroy(string $id)
     {
-        //
+        movies::destroy($id);
+        return redirect('/view');
     }
 }

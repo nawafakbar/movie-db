@@ -8,16 +8,33 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link @yield('navHome')" aria-current="page" href="/">Home</a>
+          <a class="nav-link @yield('navHome')" aria-current="page" href="/movies">Home</a>
         </li>
+        @auth
         <li class="nav-item">
-          <a class="nav-link @yield('navInput')" href="/create">Input Movie</a>
+          <a class="nav-link @yield('navView')" href="/view">Input Movie</a>
+        </li>  
+        <li class="nav-item">
+          <a class="nav-link disable @yield('navView')" href="/view">{{ Auth::user()->name }}</a>
+        </li>  
+        @else
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
         </li>
+        @endauth
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
+      @auth
+    <form action="{{ route('logout') }}" method="POST" class="ms-2">
+      @csrf
+      <button type="submit" class="btn btn-outline-light">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </button>
+    </form>
+    @endauth
     </div>
   </div>
 </nav>

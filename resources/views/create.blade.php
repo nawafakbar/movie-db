@@ -1,17 +1,20 @@
 @extends('layouts.main')
 @section('title', 'Create')
-@section('navInput', 'active')
+@section('navView', 'active')
 
 @section('content')
 
 <div class="container py-4">
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    @if ($errors->any())
+    <div class="alert alert-danger mt-5">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
 @endif
-<form action="{{ url('/') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ url('/movies') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <!-- Title -->
