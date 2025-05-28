@@ -25,9 +25,15 @@ class MoviesController extends Controller
         return view('detail_movie', compact('movie'));
     }
 
+    public function detailMovieDua($id)
+    {
+        $movie = movies::with('categories')->findOrFail($id);
+        return view('detail_movie_dua', compact('movie'));
+    }
+
     public function listMovie()
     {
-        $movies=movies::orderBy('id', 'asc')->paginate(6);
+        $movies=movies::orderBy('id', 'desc')->paginate(6);
         return view('view', ['movies'=>$movies]);
     }
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/movies', MoviesController::class);
 Route::get('/movie/{id}/{slug}', [MoviesController::class, 'detailMovie']);
+Route::get('/movie/{id}/{slug}/dua', [MoviesController::class, 'detailMovieDua']);
 
 Route::get('/movies/create', [MoviesController::class, 'create'])->middleware('auth');
 

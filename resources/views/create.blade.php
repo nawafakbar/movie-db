@@ -14,6 +14,8 @@
         </ul>
     </div>
 @endif
+
+<h3 class="mt-3">Add Movie</h3>
 <form action="{{ url('/movies') }}" method="POST" enctype="multipart/form-data">
     @csrf
 

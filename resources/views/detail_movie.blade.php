@@ -1,9 +1,9 @@
 @extends('layouts.main')
 @section('title', $movie->title . ' - Detail')
-@section('navCard', 'active')
+@section('navHome', 'active')
 
 @section('content')
-<div class="row my-4">
+<div class="row pb-5 mb-5 pt-4">
         <div class="col-md-12">
             <div class="card mb-3">
                 <div class="row g-0">

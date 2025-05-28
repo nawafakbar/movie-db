@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="container py-4">
+    <h3 class="mt-3">Edit Movie</h3>
 <form action="{{ url('/movies/' . $movie->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
@@ -64,7 +65,7 @@
 
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary mb-5">Edit Movie</button>
+    <button type="submit" class="btn btn-primary mb-5">Update Movie</button>
 </form>
 </div>
 @endsection

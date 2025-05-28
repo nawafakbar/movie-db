@@ -3,7 +3,10 @@
 @section('navLogin', 'active')
 
 @section('content')
-<form class="mt-5" action="/login" method="POST">
+
+<div class="row justify-content-center mt-4">
+  <h1 class="text-center mt-5">Login</h1>
+<form class="mt-3 mx-5 px-5" style="width: 40%" action="/login" method="POST">
     @csrf
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -28,6 +31,7 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" style="width: 125px;">Submit</button>
 </form>
+</div>
 @endsection
