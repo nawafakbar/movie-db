@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('title', 'Login')
+@section('navLogin', 'active')
 
 @section('content')
 <form class="mt-5" action="/login" method="POST">

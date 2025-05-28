@@ -12,14 +12,14 @@
         </li>
         @auth
         <li class="nav-item">
-          <a class="nav-link @yield('navView')" href="/view">Input Movie</a>
+          <a class="nav-link @yield('navView')" href="/view">Data Movie</a>
         </li>  
         <li class="nav-item">
-          <a class="nav-link disable @yield('navView')" href="/view">{{ Auth::user()->name }}</a>
+          <a class="nav-link disabled">{{ Auth::user()->name }}</a>
         </li>  
         @else
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link @yield('navLogin')" href="/login">Login</a>
         </li>
         @endauth
       </ul>
@@ -30,7 +30,7 @@
       @auth
     <form action="{{ route('logout') }}" method="POST" class="ms-2">
       @csrf
-      <button type="submit" class="btn btn-outline-light">
+      <button type="submit" class="btn btn-outline-light" onclick="return confirmLogout()">
       <i class="bi bi-box-arrow-right"></i> Logout
     </button>
     </form>
@@ -39,6 +39,12 @@
   </div>
 </nav>
 </header>
+
+<script>
+  function confirmLogout() {
+    return confirm("Apakah Anda yakin ingin logout?");
+  }
+</script>
 {{-- <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
