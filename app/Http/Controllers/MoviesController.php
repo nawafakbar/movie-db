@@ -16,7 +16,12 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies=movies::orderBy('id', 'desc')->paginate(6);
+        $query=movies::orderBy('id', 'desc');
+        if (request('q')) {
+            $query->where('title', 'like', '%'. request('q') . '%');
+        }
+        $movies=$query->paginate(6)->withQueryString();
+        //$movies=movies::orderBy('id', 'desc')->paginate(6);
         return view('template', ['movies'=>$movies]);
     }
 
