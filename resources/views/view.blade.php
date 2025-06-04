@@ -27,14 +27,22 @@
             <td>{{ $movie->actors }}</td>
             <td>{{ $movie->year }}</td>
             <td class="text-center"><img src="{{ asset('storage/' . $movie->cover_image) }}" class="img-fluid" style="object-fit: cover; width: 100px;" alt="{{ $movie->title }}"></td>
+
             <td class="text-center">
             <a href="/movie/{{ $movie->id }}/{{ $movie->slug }}/dua" class="btn btn-primary mb-2">Detail</a>
-            <a href="/{{ $movie->id }}/{{ $movie->slug }}/edit" class="btn btn-warning mb-2">Edit</a>
+            @if (auth()->user()->role === 'admin')
+                <a href="/{{ $movie->id }}/{{ $movie->slug }}/edit" class="btn btn-warning mb-2">Edit</a>
+            @endif
+
+            @can('delete-movie')
             <form action="/movies/{{$movie->id}}" method="post" class="d-inline" onsubmit="return confirm('Apakah kamu yakin ingin menghapus data ini?')">
             @method('delete')
             @csrf
             <button class="btn btn-danger mb-2">Delete</button>
-        </form></td>
+            </form>
+            @endcan
+            </td>
+
         </tr>
             
         @endforeach

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\movies;
 use App\Models\categories;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 
 class MoviesController extends Controller
@@ -15,7 +16,7 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies=movies::orderBy('id', 'asc')->paginate(6);
+        $movies=movies::orderBy('id', 'desc')->paginate(6);
         return view('template', ['movies'=>$movies]);
     }
 
@@ -130,7 +131,12 @@ class MoviesController extends Controller
      */
     public function destroy(string $id)
     {
-        movies::destroy($id);
-        return redirect('/view');
+        if (Gate::allows('delete-movie')) {
+
+            movies::destroy($id);
+            return redirect('/view');
+        }
+        abort(403);
+        
     }
 }

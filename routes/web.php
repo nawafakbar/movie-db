@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\MoviesController;
-use App\Http\Controllers\AuthController;
+use App\Http\Middleware\RoleAdmin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MoviesController;
 
 //
 // Route::get('/', function () {
@@ -31,4 +32,4 @@ Route::post('/logout', function () {
 
 
 Route::get('/view', [MoviesController::class, 'listMovie']);
-Route::get('/{id}/{slug}/edit', [MoviesController::class, 'edit']);
+Route::get('/{id}/{slug}/edit', [MoviesController::class, 'edit'])->middleware('auth', RoleAdmin::class);;
